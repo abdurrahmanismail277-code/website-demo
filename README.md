@@ -19,8 +19,9 @@ Open `resume.html` and select **Download PDF**. In the print dialog, choose **Sa
 
 ## Before publishing
 
-- Replace `https://github.com/YOUR-USERNAME` in `index.html` with the correct GitHub profile URL.
+- The GitHub links in `index.html` point to the project repository.
 - Confirm the résumé, email, phone, project, and social links are current.
 - Upload both HTML files together so the résumé link can resolve to `resume.html`.
 
 The contact form opens a prefilled message in the visitor's default email app; it does not submit to a server.
+
