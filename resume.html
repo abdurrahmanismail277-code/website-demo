@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akinjobi Abdurrahman Olanrewaju — Resume</title>
+<meta name="description" content="Resume of Akinjobi Abdurrahman Olanrewaju, freelance web developer from Nigeria.">
+<link rel="icon" type="image/jpeg" href="./favicon.jpeg?v=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Newsreader:ital,wght@1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--line:#2b2b2b;--acc:#ff4a0a;--it:#c8573a;--ink:#161614;--mute:#5d5a52}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:#f4f1ea;font:400 15px/1.6 Inter,system-ui,sans-serif;padding:84px 16px 48px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.bar{position:fixed;top:12px;left:12px;right:12px;max-width:820px;margin:auto;display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid var(--line);border-radius:99px;padding:8px 8px 8px 22px;z-index:10}
+.bar .logo{font:800 .95rem Syne,sans-serif}.bar .logo b{color:var(--acc)}
+.btn{display:inline-flex;gap:8px;align-items:center;min-height:44px;padding:10px 20px;border-radius:99px;border:1px solid var(--line);background:none;color:#f4f1ea;font:500 .88rem Inter;cursor:pointer;transition:.25s}
+.btn:hover{border-color:var(--acc);color:var(--acc)}.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}.btn.pri:hover{color:#fff}
+.acts{display:flex;gap:8px}
+.paper{background:#fbf9f4;color:var(--ink);max-width:820px;margin:auto;border-radius:6px;padding:56px 56px 48px;box-shadow:0 20px 60px #000a}
+h1{font:800 clamp(1.9rem,5vw,2.8rem)/1.05 Syne,sans-serif;letter-spacing:-.03em}
+.role{font:italic 400 1.35rem Newsreader,serif;color:var(--it);margin:6px 0 18px}
+.ct{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.88rem;color:var(--mute);padding-bottom:20px;border-bottom:2px solid var(--ink)}.ct a{overflow-wrap:anywhere}
+.ct a:hover{color:var(--acc)}
+h2{font:400 .72rem 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin:28px 0 12px}
+p{max-width:68ch}
+.row{display:grid;grid-template-columns:130px 1fr;gap:6px 24px;margin-bottom:14px}
+.row .d{font:400 .78rem 'JetBrains Mono',monospace;color:var(--mute);padding-top:3px}
+.row b{font-weight:600;display:block}.row span.s{color:var(--mute);font-size:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font:400 .78rem 'JetBrains Mono',monospace;border:1px solid #bdb8aa;border-radius:3px;padding:3px 10px}
+.sk{display:grid;grid-template-columns:130px 1fr;gap:10px 24px;align-items:start}
+.sk>b{font-weight:600;font-size:.9rem;padding-top:3px}
+@media(max-width:620px){.paper{padding:32px 22px}.row,.sk{grid-template-columns:1fr}.bar{padding:8px}.bar .logo{display:none}.acts{flex-wrap:wrap;justify-content:flex-end}.btn{padding:9px 12px;font-size:.82rem}}
+@media(max-width:360px){body{padding-inline:10px}.paper{padding:26px 16px}.bar{left:8px;right:8px}.acts{gap:6px}.btn{padding:8px 10px;font-size:.78rem}.ct{font-size:.82rem}}
+@page{size:A4;margin:12mm}
+@media print{
+ body{background:#fff;padding:0;font-size:12px}.bar{display:none}
+ .paper{box-shadow:none;border-radius:0;max-width:none;padding:0}
+ h2{margin:18px 0 8px}.row{margin-bottom:10px;break-inside:avoid}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+ <a class="logo" href="index.html">itqan<b>.</b>codes</a>
+ <div class="acts"><a class="btn" href="index.html">← Portfolio</a><button class="btn pri" onclick="window.print()">Download PDF ↓</button></div>
+</div>
+
+<main class="paper">
+ <h1>Akinjobi Abdurrahman Olanrewaju</h1>
+ <div class="role">Freelance web developer</div>
+ <div class="ct">
+  <a href="mailto:abdurrahmanismail277@gmail.com">abdurrahmanismail277@gmail.com</a>
+  <a href="https://wa.me/2348082062525">WhatsApp: +234 808 206 2525</a>
+  <a href="https://linkedin.com/in/akinjobi-abdurrahman-8bb6163a5">LinkedIn</a>
+  <a href="https://abdurrahmanportfolio-pearl.vercel.app">Portfolio</a>
+  <span>Nigeria · Working worldwide</span>
+ </div>
+
+ <h2>Profile</h2>
+ <p>Freelance web developer from Nigeria who builds fast, distinctive websites for businesses, institutions and personal brands. I bring design, development and practical thinking into one process, from the first idea to launch and ongoing maintenance.</p>
+
+ <h2>Skills</h2>
+ <div class="sk">
+  <b>Frontend</b><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Tailwind CSS</span></div>
+  <b>Backend</b><div class="tags"><span>Node.js</span><span>Python</span><span>Flask</span><span>PHP</span></div>
+  <b>Databases</b><div class="tags"><span>PostgreSQL</span><span>MySQL</span></div>
+  <b>CMS</b><div class="tags"><span>WordPress</span><span>Elementor</span><span>Divi</span><span>Bricks</span><span>Breakdance</span></div>
+  <b>Tools</b><div class="tags"><span>Git / GitHub</span><span>VS Code</span><span>Figma</span><span>Vercel</span></div>
+ </div>
+
+ <h2>Selected projects</h2>
+ <div class="row"><div class="d">2026</div><div><b>arresalahinstitute.com</b><span class="s">Education · A focused learning experience for an institute committed to knowledge and growth.</span><br><a class="s" href="https://arresalahinstitute.com">arresalahinstitute.com</a></div></div>
+ <div class="row"><div class="d">2025</div><div><b>bismakexcelservice.com</b><span class="s">Business · A clear, professional web presence for an Excel and business services company.</span><br><a class="s" href="https://bismakexcelservice.com">bismakexcelservice.com</a></div></div>
+
+ <h2>Training</h2>
+ <div class="row"><div class="d">Internship</div><div><b>Internflare</b><span class="s">Web development internship · Professional training</span></div></div>
+ <div class="row"><div class="d">Online</div><div><b>TS Academy</b><span class="s">Practical digital skills</span></div></div>
+</main>
+</body>
+</html>
