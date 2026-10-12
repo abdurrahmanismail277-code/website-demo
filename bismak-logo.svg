@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 92" role="img" aria-labelledby="title">
+  <title id="title">Bismak</title>
+  <rect width="160" height="92" fill="#123b2e"/>
+  <ellipse cx="80" cy="46" rx="75" ry="43" fill="#f4f1dc"/>
+  <ellipse cx="82" cy="46" rx="49" ry="44" fill="#123b2e"/>
+  <path d="M38 13a48 48 0 0 0 0 66 48 48 0 0 1 20-66" fill="#f4f1dc"/>
+  <text x="80" y="57" text-anchor="middle" fill="#c94e3f" stroke="#8f372d" stroke-width=".8" paint-order="stroke" font-family="Georgia,serif" font-size="35" font-weight="700" letter-spacing="-2">Bismak</text>
+  <rect x=".75" y=".75" width="158.5" height="90.5" fill="none" stroke="#f4f1dc" stroke-width="1.5"/>
+</svg>
