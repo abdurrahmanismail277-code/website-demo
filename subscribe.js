@@ -1,9 +1,11 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, website } = req.body || {};
+  const { email: submittedEmail, website } = req.body || {};
+  const email = typeof submittedEmail === 'string' ? submittedEmail.trim() : '';
 
   // Honeypot: real visitors leave this empty, bots fill it in
   if (website) return res.status(200).json({ ok: true });
@@ -12,22 +14,32 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Please enter a valid email.' });
   }
 
-  const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${process.env.MAILERLITE_API_KEY}`
-    },
-    body: JSON.stringify({
-      email,
-      groups: [process.env.MAILERLITE_GROUP_ID]
-    })
-  });
-
-  if (!response.ok) {
-    return res.status(502).json({ error: 'Something went wrong. Please try again.' });
+  const apiKey = process.env.MAILERLITE_API_KEY;
+  const groupId = process.env.MAILERLITE_GROUP_ID;
+  if (!apiKey || !groupId) {
+    return res.status(503).json({ error: 'Newsletter signup is temporarily unavailable. Please try again later.' });
   }
 
-  return res.status(200).json({ ok: true });
+  try {
+    const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        email,
+        groups: [groupId]
+      })
+    });
+
+    if (!response.ok) {
+      return res.status(502).json({ error: 'Newsletter signup is temporarily unavailable. Please try again later.' });
+    }
+
+    return res.status(200).json({ ok: true });
+  } catch {
+    return res.status(502).json({ error: 'Newsletter signup is temporarily unavailable. Please try again later.' });
+  }
 }
