@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,17 +19,18 @@
 <meta name="twitter:description" content="Fast, responsive websites for businesses, schools, and personal brands in Nigeria and worldwide.">
 <meta name="twitter:image" content="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-10-10%20at%201.09.32%20AM-WdVArRnP4Y2sckX0mw4nhHKez0YVuT.jpeg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Akinjobi Abdurrahman Olanrewaju","url":"https://abdurrahman-itqan.vercel.app/","jobTitle":"Freelance Web Developer","description":"Freelance web developer building responsive websites for businesses, schools, and personal brands in Nigeria and worldwide.","address":{"@type":"PostalAddress","addressCountry":"NG"},"sameAs":["https://linkedin.com/in/akinjobi-abdurrahman-8bb6163a5"]}
+{"@context":"https://schema.org","@type":"Person","name":"Akinjobi Abdurrahman Olanrewaju","url":"https://abdurrahman-itqan.vercel.app/","jobTitle":"Freelance Web Developer","description":"Freelance web developer building responsive websites for businesses, schools, and personal brands in Nigeria and worldwide.","address":{"@type":"PostalAddress","addressCountry":"NG"},"sameAs":["https://linkedin.com/in/akinjobi-abdurrahman-8bb6163a5","https://www.behance.net/itqancodes","https://www.instagram.com/itqan.by.abdurrahman"]}
 </script>
 <link rel="icon" type="image/jpeg" href="./favicon.jpeg?v=1">
 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Newsreader:ital,wght@1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0a;--card:#141414;--line:#2b2b2b;--fg:#f4f1ea;--mute:#8f8b82;--acc:#ff4a0a;--it:#d9683a;--ghost:rgba(255,255,255,.045);--sy:'Syne',sans-serif;--mo:'JetBrains Mono',monospace}
+:root{--bg:#0a0a0a;--card:#141414;--line:#2b2b2b;--fg:#f4f1ea;--mute:#8f8b82;--acc:#ff4a0a;--it:#d9683a;--ghost:rgba(255,255,255,.045);--sy:'Syne',sans-serif;--mo:'JetBrains Mono',monospace;--announce-h:40px;--contact-widget-size:60px;--contact-widget-gap:12px}
+:root[data-announcement-closed="true"]{--announce-h:0px}
 :root[data-theme=light]{--bg:#f4f1ea;--card:#fff;--line:#d8d3c6;--fg:#141412;--mute:#6d695f;--ghost:rgba(0,0,0,.05)}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(90px + var(--announce-h))}
 body{background:var(--bg);color:var(--fg);font:400 17px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px}
@@ -61,9 +62,24 @@ em{font-family:Newsreader,serif;font-weight:400;color:var(--it);letter-spacing:0
 .hero-code pre{padding:10px 12px 11px;overflow:hidden;color:var(--fg);font:400 .62rem/1.7 var(--mo);letter-spacing:0}
 .hero-code .ln{display:inline-block;width:19px;color:var(--mute);user-select:none}
 .hero-code .kw{color:var(--acc)}.hero-code .str{color:#c7a879}.hero-code .bool{color:#8fbd9b}
-#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--acc);z-index:200}
+#prog{position:fixed;top:var(--announce-h);left:0;height:3px;width:0;background:var(--acc);z-index:200;transition:top .3s ease}
+/* Announcement ticker */
+.announcement{position:fixed;inset:0 0 auto;height:40px;z-index:210;display:flex;align-items:center;overflow:hidden;padding:0 48px 0 14px;background:var(--bg);color:#f3f1ea;border-bottom:1px solid var(--line);transition:opacity .2s ease,visibility .2s step-end}
+:root[data-theme=light] .announcement{color:var(--fg)}
+.announcement-track{display:flex;width:max-content;min-width:max-content;align-items:center;animation:announcement-scroll 30s linear infinite;will-change:transform}
+.announcement-group{display:flex;flex:none;align-items:center;gap:30px;padding-right:30px;white-space:nowrap}
+.announcement-item{display:inline-flex;align-items:center;gap:30px;white-space:nowrap;font:400 .68rem var(--mo);letter-spacing:.025em}
+.announcement-item a{color:inherit;text-decoration:none}.announcement-item a:hover{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
+.announcement-dot{color:var(--acc);font:700 .68rem var(--mo)}
+.announcement-close{position:absolute;top:-2px;right:0;width:44px;height:44px;border:0;background:var(--bg);color:var(--fg);font:400 1.1rem/1 Inter,sans-serif;cursor:pointer}
+.announcement-close:hover{color:var(--acc)}.announcement-close:focus-visible{outline:2px solid var(--acc);outline-offset:-4px;border-radius:50%}
+.announcement-whatsapp-static{display:none}
+@keyframes announcement-scroll{to{transform:translateX(-50%)}}
+.announcement:hover .announcement-track,.announcement:active .announcement-track{animation-play-state:paused}
+:root[data-announcement-closed="true"] .announcement{opacity:0;visibility:hidden;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.announcement-track{animation:none;transform:none;will-change:auto}.announcement-group[aria-hidden="true"]{display:none}.announcement-item:nth-child(2),.announcement-item:nth-child(3),.announcement-item:nth-child(4){display:none}.announcement-whatsapp-static{display:grid;position:absolute;right:44px;top:-2px;width:44px;height:44px;place-items:center;color:var(--fg);font-size:1rem}.announcement-whatsapp-static:focus-visible{outline:2px solid var(--acc);outline-offset:-4px;border-radius:50%}}
 /* header pill */
-header{position:fixed;top:12px;left:12px;right:12px;z-index:100;max-width:1100px;margin:auto}
+header{position:fixed;top:calc(var(--announce-h) + 12px);left:12px;right:12px;z-index:100;max-width:1100px;margin:auto;transition:top .3s ease}
 .pill{display:flex;align-items:center;justify-content:space-between;background:#000;border:1px solid var(--line);border-radius:99px;padding:8px 8px 8px 24px;color:#f4f1ea}
 .logo{display:inline-flex;align-items:baseline;min-width:max-content;font:800 1.08rem/1 var(--sy);letter-spacing:-.045em;color:var(--fg);transition:transform .25s}
 .logo-dot{display:inline-block;color:var(--acc);transition:transform .25s,text-shadow .25s}.logo-domain{font:500 .92em/1 Inter,sans-serif;letter-spacing:-.055em;color:#c6c2b9}
@@ -148,6 +164,23 @@ header{position:fixed;top:12px;left:12px;right:12px;z-index:100;max-width:1100px
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;position:relative}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:.3s}
 .card:hover{transform:translateY(-4px);border-color:var(--acc)}.card.hide{display:none}
+.feature-case{grid-column:1/-1}
+.feature-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);border-bottom:1px solid var(--line)}
+.feature-cover{min-width:0;aspect-ratio:16/11;position:relative;overflow:hidden;background:#171717}
+.feature-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.feature-summary{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:clamp(22px,4vw,46px)}
+.feature-summary .mono{display:flex;justify-content:space-between;gap:12px;color:var(--it);font-size:.65rem}
+.feature-summary h3{font:700 clamp(1.8rem,4vw,3.3rem)/1.02 var(--sy);letter-spacing:-.045em}
+.feature-summary p{max-width:44ch;color:var(--mute);font-size:.95rem;line-height:1.7}
+.feature-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.feature-tags span{padding:7px 10px;border:1px solid var(--line);border-radius:99px;color:var(--fg);font:400 .62rem var(--mo);letter-spacing:.04em}
+.feature-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px}
+.feature-gallery figure{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.feature-gallery img{display:block;width:100%;height:auto}
+.feature-gallery figcaption{padding:9px 11px;color:var(--mute);font:400 .62rem var(--mo);letter-spacing:.05em}
+@media(max-width:760px){.feature-intro{grid-template-columns:1fr}.feature-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}}
+@media(prefers-reduced-motion:reduce){.feature-case,.feature-case:hover{transition:none;transform:none}}
+.behance-logo{width:22px;height:22px;flex:none;display:block;vertical-align:middle}
 .tc-track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative}
 .tc{min-width:0;min-height:100%;display:flex;flex-direction:column;gap:20px;padding:30px 28px 24px;background:var(--card);border:1px solid var(--line);border-radius:14px;transition:transform .25s,border-color .25s}
 .tc:hover{transform:translateY(-4px);border-color:var(--acc)}
@@ -210,6 +243,10 @@ summary{cursor:pointer;list-style:none;display:flex;justify-content:space-betwee
 summary::after{content:"+";color:var(--acc);font-size:1.6rem;line-height:1;transition:.3s}
 details[open] summary::after{transform:rotate(45deg)}details p{margin-top:12px;color:var(--mute);max-width:56ch}
 /* contact */
+.connect-wrap{position:relative;padding-bottom:0}
+.connect-head{max-width:760px;margin-bottom:0;position:relative}
+.connect-head h2{margin:10px 0 14px;font-size:clamp(2rem,5vw,3.8rem)}
+.connect-head p{color:var(--mute);max-width:58ch}
 .ct{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;position:relative}
 @media(max-width:760px){.ct{grid-template-columns:1fr}}
 .ct p{color:var(--mute);margin-bottom:22px}.stk{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
@@ -220,18 +257,49 @@ form{display:flex;flex-direction:column;gap:16px}label{font:400 .72rem var(--mo)
 input,textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;color:var(--fg);padding:13px 14px;font:inherit;margin-top:6px}
 input:focus,textarea:focus{outline:none;border-color:var(--acc)}
 .err{display:block;color:#ff7a6b;font-size:.82rem;min-height:1em}#ok{color:var(--acc);min-height:1.4em}#ok.status-error{color:#ff7a6b}
+/* newsletter */
+.newsletter{padding:78px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.newsletter-inner{max-width:620px;text-align:center}
+.newsletter h2{margin:0 0 12px;font-size:clamp(2rem,5vw,3.2rem)}
+.newsletter-copy{max-width:56ch;margin:0 auto 22px;color:var(--mute);font-size:.95rem}
+.newsletter-form{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;max-width:480px;margin:0 auto}
+.newsletter-field{min-width:0;text-align:left}
+.newsletter-field label{display:block;margin:0 0 7px;color:#8c8a84;font:400 .78rem Inter,sans-serif;letter-spacing:0}
+#newsletter-email{display:block;width:100%;min-height:48px;margin:0;padding:0 20px;border:1px solid #2a2a2a;border-radius:999px;background:#161616;color:#f3f1ea;font:400 16px/1.4 Inter,sans-serif}
+#newsletter-email::placeholder{color:#8c8a84;opacity:1}
+#newsletter-email:focus{border-color:#ff4d0d;outline:2px solid rgba(255,77,13,.38);outline-offset:2px}
+.newsletter-submit{min-height:48px;padding:0 24px;border:1px solid #ff4d0d;border-radius:999px;background:#ff4d0d;color:#fff;font:600 .9rem Inter,sans-serif;white-space:nowrap;cursor:pointer;transition:background .18s ease,border-color .18s ease}
+.newsletter-submit:hover:not(:disabled){background:#ff6633;border-color:#ff6633}
+.newsletter-submit:disabled{opacity:.6;cursor:not-allowed}
+.newsletter-honeypot{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+.newsletter-note{margin:12px auto 0;color:#8c8a84;font-size:.76rem;line-height:1.5}
+#newsletter-msg{grid-column:1/-1;min-height:1.5em;margin:0;color:var(--fg);font-size:.88rem;text-align:left}
+#newsletter-msg.is-error{color:#ff4d0d}
+#newsletter-msg.is-pending{color:var(--mute)}
+:root[data-theme=light] #newsletter-email{background:var(--card);border-color:var(--line);color:var(--fg)}
+:root[data-theme=light] .newsletter-field label,:root[data-theme=light] .newsletter-note{color:var(--mute)}
+@media(max-width:480px){.newsletter{padding:64px 0}.newsletter-form{grid-template-columns:1fr;gap:12px}.newsletter-submit{width:100%}#newsletter-msg{text-align:center}}
+@media(prefers-reduced-motion:reduce){.newsletter-submit{transition:none}}
 footer{padding:64px 0 32px;color:var(--mute);font-size:.95rem}
 footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px;row-gap:36px}
 .footer-left{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .footer-logo{font-size:2.4rem;letter-spacing:-.055em}
 .footer-contact{display:block;color:rgba(244,241,234,.85);font:400 1.1rem/1.45 Inter,sans-serif;transition:color .2s}
 .footer-contact:hover{color:var(--acc)}
-.footer-icons{display:flex;gap:16px;margin-top:8px}
-.footer-icons a{position:relative;width:64px;height:64px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;background:transparent;color:var(--fg);transition:transform .2s,border-color .2s,color .2s}
-.footer-icons svg{width:26px;height:26px;fill:currentColor}
-.footer-icons a:hover,.footer-icons a:focus-visible{border-color:var(--acc);color:var(--acc);transform:translateY(-3px)}
-.footer-icons a::after{content:attr(data-tooltip);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translate(-50%,4px);padding:5px 9px;border:1px solid var(--line);border-radius:5px;background:var(--card);color:var(--fg);font:500 .68rem var(--mo);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
-.footer-icons a:hover::after,.footer-icons a:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+.footer-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
+.footer-left .footer-action{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 18px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);font:500 .86rem Inter,sans-serif;text-decoration:none;text-underline-offset:initial;white-space:nowrap;transition:transform .2s,border-color .2s,color .2s,background .2s}
+.footer-action svg{width:18px;height:18px;display:block;fill:currentColor}
+.footer-left .footer-action-primary{border-color:var(--acc);background:var(--acc);color:#fff}
+.footer-left .footer-action-outline:hover,.footer-left .footer-action-outline:focus-visible{border-color:var(--acc);color:var(--acc)}
+.footer-left .footer-action-primary:hover,.footer-left .footer-action-primary:focus-visible{border-color:var(--it);background:var(--it);color:#fff;transform:translateY(-2px)}
+.footer-left .footer-action:focus-visible,.footer-social-link:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.footer-left .footer-book{cursor:pointer;text-decoration:none}
+.footer-socials{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:flex-start;gap:18px 14px;margin-top:2px}
+.footer-social-item{display:flex;min-width:48px;flex-direction:column;align-items:center;gap:7px;color:var(--fg);font:400 .68rem var(--mo)}
+.footer-social-link{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--fg);transition:transform .2s,border-color .2s,color .2s}
+.footer-social-link svg{width:22px;height:22px;display:block;fill:currentColor}
+.footer-social-link:hover,.footer-social-link:focus-visible{border-color:var(--acc);color:var(--acc);transform:translateY(-2px)}
+.footer-social-item span{white-space:nowrap}
 .footer-divider{grid-column:1/-1;height:1px;background:var(--line)}
 .footer-nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px 28px}
 .footer-nav a{position:relative;color:rgba(244,241,234,.85);font:600 1.1rem/1.4 Inter,sans-serif;transition:color .2s}
@@ -241,18 +309,60 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
 .footer-bottom p{margin:0}.footer-credit-name{color:var(--fg)}.footer-copy{font:400 .68rem var(--mo);letter-spacing:.08em;text-transform:uppercase}
 @media(min-width:900px){footer{padding:80px 0 40px}.footer-left{grid-column:1;grid-row:1}.footer-nav{grid-column:2;grid-row:1}.footer-divider{grid-row:2}.footer-bottom{grid-row:3}}
 @media(max-width:899px){footer .wrap{display:flex;flex-direction:column;gap:30px}.footer-nav{justify-content:flex-start;gap:14px 28px}.footer-bottom{align-items:baseline;gap:10px 20px}}
+@media(max-width:760px){.footer-left{align-items:center;text-align:center}.footer-actions,.footer-socials{justify-content:center}.footer-social-item span{display:none}}
+@media(prefers-reduced-motion:reduce){.footer-left .footer-action,.footer-social-link{transition:none;transform:none}.footer-left .footer-action-primary:hover,.footer-left .footer-action-primary:focus-visible,.footer-social-link:hover,.footer-social-link:focus-visible{transform:none}}
 @media(max-width:760px){footer{padding-bottom:104px}}
 @media(max-width:760px){section{padding:78px 0}.wrap{padding-inline:18px}.hero{gap:32px}.ct{gap:32px}.grid,.sk{gap:14px}.cb,.sk>div{padding:18px}}
+@media(prefers-reduced-motion:reduce){.chat-panel,.chat-panel.is-open,.chat-greeting,.chat-greeting.is-visible,.chat-toggle,.chat-toggle:hover{transition:none;transform:none}}
 /* floating */
-.fab{position:fixed;right:16px;bottom:18px;z-index:90;display:flex;flex-direction:column;gap:10px}
+.fab{position:fixed;right:16px;bottom:calc(18px + var(--contact-widget-size) + var(--contact-widget-gap));z-index:90;display:flex;flex-direction:column;gap:var(--contact-widget-gap)}
 .fab .circ{width:48px;height:48px;background:#0a0a0a;border-color:#fff;color:#fff;font-size:1.2rem}
-.fab .wa{border-color:#25d366}.fab .wa svg{width:23px;height:23px;fill:#25d366}
+.chat-widget{position:fixed;right:16px;bottom:18px;z-index:95}
+.chat-toggle{position:relative;width:var(--contact-widget-size);height:var(--contact-widget-size);display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--acc);box-shadow:0 8px 28px rgba(0,0,0,.28);cursor:pointer;transition:transform .2s,border-color .2s}
+.chat-toggle:hover{transform:translateY(-2px);border-color:var(--acc)}.chat-toggle:focus-visible,.chat-quick:focus-visible,.chat-close:focus-visible,.chat-greeting-close:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.chat-toggle svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.chat-badge{position:absolute;top:-3px;right:-3px;min-width:21px;height:21px;display:grid;place-items:center;padding:0 5px;border:2px solid var(--bg);border-radius:99px;background:#e33d43;color:#fff;font:700 .68rem/1 Inter,sans-serif}
+.chat-badge[hidden]{display:none}
+.chat-panel{position:absolute;right:0;bottom:calc(var(--contact-widget-size) + var(--contact-widget-gap));width:320px;max-width:calc(100vw - 32px);max-height:calc(100vh - 120px);max-height:calc(100dvh - 120px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--fg);box-shadow:0 18px 50px rgba(0,0,0,.32);opacity:0;transform:translateY(10px);visibility:hidden;pointer-events:none;transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s}
+.chat-panel.is-open{opacity:1;transform:translateY(0);visibility:visible;pointer-events:auto;transition:opacity .2s ease,transform .2s ease,visibility 0s}
+.chat-header{position:relative;top:auto;left:auto;right:auto;z-index:auto;max-width:none;margin:0;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--line);transition:none}
+.chat-avatar{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--ghost);color:var(--acc);font:700 1rem var(--sy)}
+.chat-identity{min-width:0;flex:1}.chat-identity strong{display:block;font:600 .96rem Inter,sans-serif;color:var(--fg)}.chat-identity span{display:block;margin-top:3px;color:var(--mute);font-size:.76rem}
+.chat-close{width:44px;height:44px;flex:none;border:0;border-radius:50%;background:transparent;color:var(--mute);font-size:1.25rem;cursor:pointer}.chat-close:hover{background:var(--ghost);color:var(--fg)}
+.chat-body{padding:16px}.chat-subtitle{margin:0 0 13px;color:var(--mute);font-size:.82rem;line-height:1.45}
+.chat-replies{display:grid;gap:8px}.chat-quick{min-height:64px;width:100%;display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--fg);font:500 .82rem Inter,sans-serif;text-decoration:none;transition:border-color .18s,color .18s,background .18s}
+.chat-quick:hover{border-color:var(--acc);color:var(--acc)}
+.chat-link-icon{width:26px;height:26px;flex:none;display:grid;place-items:center}.chat-link-icon svg{width:22px;height:22px;fill:currentColor}
+.chat-link-copy{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}.chat-link-copy strong{font:600 .84rem/1.3 Inter,sans-serif}.chat-link-copy small{color:var(--mute);font:400 .72rem/1.35 Inter,sans-serif}.chat-link-arrow{flex:none;color:var(--mute);font-size:1rem}
+.chat-quick.primary{border-color:var(--acc);background:var(--acc);color:#fff}.chat-quick.primary .chat-link-copy small,.chat-quick.primary .chat-link-arrow{color:rgba(255,255,255,.82)}.chat-quick.primary:hover{border-color:var(--it);background:var(--it)}
+.chat-greeting{position:absolute;right:calc(var(--contact-widget-size) + var(--contact-widget-gap));bottom:8px;width:280px;max-width:calc(100vw - 100px);display:flex;align-items:center;gap:8px;padding:12px 8px 12px 14px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--fg);box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transform:translateX(10px);visibility:hidden;pointer-events:none;transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
+.chat-greeting.is-visible{opacity:1;transform:translateX(0);visibility:visible;pointer-events:auto;transition:opacity .22s ease,transform .22s ease,visibility 0s}
+.chat-greeting p{flex:1;margin:0;font-size:.8rem;line-height:1.45}.chat-greeting-close{width:44px;height:44px;flex:none;border:0;border-radius:50%;background:transparent;color:var(--mute);font-size:1.1rem;cursor:pointer}.chat-greeting-close:hover{color:var(--fg);background:var(--ghost)}
+.chat-widget.chat-open .chat-greeting{opacity:0;transform:translateX(10px);visibility:hidden;pointer-events:none;transition:none}
 #top{opacity:0;pointer-events:none;transition:.3s}#top.show{opacity:1;pointer-events:auto}
 .rv{opacity:0;transform:translateY(20px);transition:.8s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tc-track{scroll-behavior:auto}.trk,.badge i{animation:none}.wd>span{transform:none;animation:none}.hero-emphasis{animation:none;background-size:100% .075em}.logo,.logo-dot,.footer-icons a,.footer-icons a::after,.footer-nav a::after,.calendly-booking,.hero-resume,#ov .ov-book-link,.footer-book{transition:none;animation:none;transform:none}#ov,#ov.open{transition:none}#ov .ov-link,#ov.open .ov-link{animation:none;opacity:1;transition:none}#ov .ov-info,#ov.open .ov-info{animation:none;opacity:1;transform:none}#ov .x{transition:none;transform:none}.rv{transform:none}}
 </style>
 </head>
 <body>
+<aside class="announcement" id="announcement" role="region" aria-label="Announcements">
+ <div class="announcement-track" aria-label="Now booking new website projects. Websites built to bring you more customers. Fast, mobile-friendly and affordable. Message me on WhatsApp to get started.">
+  <div class="announcement-group">
+   <span class="announcement-item">Now booking new website projects <span class="announcement-dot" aria-hidden="true">◆</span></span>
+   <span class="announcement-item">Websites built to bring you more customers <span class="announcement-dot" aria-hidden="true">◆</span></span>
+   <span class="announcement-item">Fast, mobile-friendly and affordable <span class="announcement-dot" aria-hidden="true">◆</span></span>
+   <span class="announcement-item"><a href="https://wa.me/2348082062525?text=Hi%2C%20I%27d%20like%20to%20get%20started%20on%20a%20website." target="_blank" rel="noopener noreferrer">Message me on WhatsApp to get started</a> <span class="announcement-dot" aria-hidden="true">◆</span></span>
+  </div>
+  <div class="announcement-group" aria-hidden="true">
+   <span class="announcement-item">Now booking new website projects <span class="announcement-dot">◆</span></span>
+   <span class="announcement-item">Websites built to bring you more customers <span class="announcement-dot">◆</span></span>
+   <span class="announcement-item">Fast, mobile-friendly and affordable <span class="announcement-dot">◆</span></span>
+   <span class="announcement-item"><a href="https://wa.me/2348082062525?text=Hi%2C%20I%27d%20like%20to%20get%20started%20on%20a%20website." tabindex="-1">Message me on WhatsApp to get started</a> <span class="announcement-dot">◆</span></span>
+  </div>
+ </div>
+ <a class="announcement-whatsapp-static" href="https://wa.me/2348082062525?text=Hi%2C%20I%27d%20like%20to%20get%20started%20on%20a%20website." target="_blank" rel="noopener noreferrer" aria-label="Message me on WhatsApp to get started">↗</a>
+ <button class="announcement-close" id="announcement-close" type="button" aria-label="Close announcements">×</button>
+</aside>
 <div class="intro-loader" id="intro-loader" role="status" aria-label="Loading portfolio">
  <div class="intro-top"><span>ITQAN.CODES</span><span class="intro-counter" id="intro-counter" aria-live="off">00%</span></div>
  <button class="intro-skip" id="intro-skip" type="button" aria-label="Skip intro">SKIP ↗</button>
@@ -311,11 +421,24 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
 
 <section id="projects"><div class="ghost" aria-hidden="true">Projects</div><div class="wrap">
  <h2>Selected <em>work</em></h2>
- <div class="fl"><button class="on" data-f="all">ALL</button><button data-f="Business">BUSINESS</button><button data-f="Education">EDUCATION</button></div>
+ <div class="fl"><button class="on" data-f="all">ALL</button><button data-f="Business">BUSINESS</button><button data-f="Education">EDUCATION</button><button data-f="Design">DESIGN</button></div>
  <div class="grid">
+  <article class="card feature-case" data-c="Design">
+   <div class="feature-intro">
+    <div class="feature-cover"><img src="assets/01_hero_cover.jpg" alt="Floating Mockup Series hero artwork with a colorful smartphone among dark spheres" loading="lazy"><span class="cat">Product visual</span></div>
+    <div class="feature-summary"><span class="mono"><span>03 / Product visual</span><span>2026</span></span><h3>Floating Mockup Series</h3><p>A product visual study pairing a bold smartphone mockup and bright color blocking with soft, dimensional forms.</p><div class="feature-tags"><span>Product visualization</span><span>Art direction</span><span>Mockup series</span></div><a class="btn" href="https://www.behance.net/gallery/257304907/Website-Design-Development" target="_blank" rel="noopener noreferrer" aria-label="View Floating Mockup Series on Behance">View project on Behance <span aria-hidden="true">↗</span></a></div>
+   </div>
+   <div class="feature-gallery" role="group" aria-label="Floating Mockup Series project images">
+    <figure><img src="assets/02_split_layout.jpg" alt="Split layout showing the phone mockup, concept copy, and color swatches" loading="lazy"><figcaption>Concept layout</figcaption></figure>
+    <figure><img src="assets/03_detail_grid.jpg" alt="Close-up grid showing the phone display, metallic edge, spheres, and color blocking" loading="lazy"><figcaption>Detail views</figcaption></figure>
+    <figure><img src="assets/04_colour_palette.jpg" alt="Color palette of Volt, Ocean, Teal, Blush, and Snow" loading="lazy"><figcaption>Color palette</figcaption></figure>
+    <figure><img src="assets/05_portrait_post.jpg" alt="Portrait format mockup-series promotional artwork" loading="lazy"><figcaption>Portrait artwork</figcaption></figure>
+    <figure><img src="assets/06_editorial_lime.jpg" alt="Lime editorial layout featuring the floating smartphone mockup" loading="lazy"><figcaption>Editorial layout</figcaption></figure>
+   </div>
+  </article>
   <article class="card" data-c="Business"><div class="shot"><iframe src="https://bismakexcelservice.com" loading="lazy" title="Preview of bismakexcelservice.com" tabindex="-1"></iframe><span class="cat">Business</span></div><div class="cb"><span class="mono"><span>01 / Business</span><span>2025</span></span><h3>bismakexcelservice.com</h3><p>A clear, professional web presence for an Excel and business services company.</p><a class="btn" href="https://bismakexcelservice.com" target="_blank" rel="noopener">Preview website ↗</a></div></article>
   <article class="card" data-c="Education"><div class="shot"><iframe src="https://arresalahinstitute.com" loading="lazy" title="Preview of arresalahinstitute.com" tabindex="-1"></iframe><span class="cat">Education</span></div><div class="cb"><span class="mono"><span>02 / Education</span><span>2026</span></span><h3>arresalahinstitute.com</h3><p>A focused learning experience for an institute committed to knowledge and growth.</p><a class="btn" href="https://arresalahinstitute.com" target="_blank" rel="noopener">Preview website ↗</a></div></article>
- </div>
+  </div>
 </div></section>
 
 <section id="testimonials"><div class="ghost" aria-hidden="true">Reviews</div><div class="wrap">
@@ -347,8 +470,7 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
   <a href="https://www.internflare.net/" target="_blank" rel="noopener"><span class="n">01</span><img src="https://www.google.com/s2/favicons?domain=internflare.net&sz=128" alt="Internflare logo"><div><span class="mono">Professional training</span><b>Internflare</b><i>Web development internship</i></div></a>
   <a href="https://tsacademyonline.com/" target="_blank" rel="noopener"><span class="n">02</span><img src="https://www.google.com/s2/favicons?domain=tsacademyonline.com&sz=128" alt="TS Academy logo"><div><span class="mono">Online academy</span><b>TS Academy</b><i>Practical digital skills</i></div></a>
   <a href="https://betechified.com/" target="_blank" rel="noopener"><span class="n">03</span><img src="https://www.google.com/s2/favicons?domain=betechified.com&sz=128" alt="BeTechified logo"><div><span class="mono">Backend development</span><b>BeTechified</b><i>Backend development training</i></div></a>
- </div>
-</div></section>
+ </div></section>
 
 <section id="faq"><div class="ghost" aria-hidden="true">Asked questions</div><div class="wrap fq">
  <div><span class="mono">Frequently asked questions</span><h2 style="margin-top:10px">FAQ</h2></div>
@@ -361,7 +483,11 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
  </div>
 </div></section>
 
-<section id="contact"><div class="ghost" aria-hidden="true">Contact</div><div class="wrap ct">
+<section id="contact"><div class="ghost" aria-hidden="true">Contact</div>
+<div class="wrap connect-wrap" id="connect" aria-labelledby="connect-title">
+ <div class="connect-head"><span class="mono">Let's connect</span><h2 id="connect-title">Let's build something great together.</h2><p>Tell me about your project on WhatsApp, or see my work on Behance and Instagram.</p></div>
+</div>
+<div class="wrap ct">
  <div><h2>Let's <em>talk.</em></h2><p>Have a project in mind? Send me a direct message below.</p>
   <div class="stk"><button class="btn pri calendly-booking" type="button" aria-label="Book a free 15-minute call (opens scheduling window)"><svg class="calendar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></svg>Book a free 15-minute call</button><a class="btn" href="https://wa.me/2348082062525" target="_blank" rel="noopener"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .14 5.35.14 11.93c0 2.1.55 4.14 1.6 5.95L0 24l6.28-1.65a11.9 11.9 0 0 0 5.8 1.48h.01c6.57 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.5-8.42ZM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 1 1 8.37 4.62Zm5.42-7.39c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.8-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg> WhatsApp</a>
   <a class="btn" href="mailto:itqancodes@gmail.com"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v.4l10 6.25L22 6.4V6a2 2 0 0 0-2-2ZM2 8.76V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8.76l-9.47 5.92a1 1 0 0 1-1.06 0L2 8.76Z"/></svg>itqancodes@gmail.com</a>
@@ -377,18 +503,40 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
 </div></section>
 </main>
 
+<section class="newsletter" id="newsletter" aria-labelledby="newsletter-heading">
+ <div class="wrap newsletter-inner">
+  <h2 id="newsletter-heading">Stay in the loop.</h2>
+  <p class="newsletter-copy">Get tips on building better websites and updates on new projects. No spam, unsubscribe any time.</p>
+  <form id="newsletter-form" novalidate>
+   <div class="newsletter-field"><label for="newsletter-email">Email address</label><input type="email" name="email" id="newsletter-email" placeholder="you@example.com" autocomplete="email" required></div>
+   <input class="newsletter-honeypot" type="text" name="website" id="newsletter-website" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <button class="newsletter-submit" type="submit">Subscribe</button>
+   <p id="newsletter-msg" role="status" aria-live="polite"></p>
+  </form>
+  <p class="newsletter-note">By subscribing you agree to receive emails from Itqan.codes.</p>
+ </div>
+</section>
+
 <footer>
  <div class="wrap">
   <div class="footer-left">
    <a href="#home" class="logo footer-logo" aria-label="itqan.codes, home">itqan<span class="logo-dot">.</span><span class="logo-domain">codes</span></a>
    <a class="footer-contact" href="https://wa.me/2348082062525">+234 808 206 2525</a>
    <a class="footer-contact" href="mailto:itqancodes@gmail.com">itqancodes@gmail.com</a>
-   <div class="footer-icons" role="group" aria-label="More links">
-    <a href="resume.html" aria-label="Download resume" data-tooltip="Download resume"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.59l3.3-3.3 1.4 1.42-5 5a1 1 0 0 1-1.4 0l-5-5 1.4-1.42 3.3 3.3V4a1 1 0 0 1 1-1ZM5 19h14v2H5z"/></svg></a>
-    <a href="https://github.com/abdurrahmanismail277-code/adulxdivsey" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.65-1.24-1.65-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.99 1.93 3.3 1.47.1-.72.4-1.21.72-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.15-3-.12-.29-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.12-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.67.12 2.96.71.78 1.14 1.78 1.14 3 0 4.27-2.6 5.21-5.08 5.49.4.35.76 1.02.76 2.06v3.06c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg></a>
-    <a href="https://linkedin.com/in/akinjobi-abdurrahman-8bb6163a5" target="_blank" rel="noopener" aria-label="LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM8.09 18.34H5.12V9.01h2.97v9.33ZM6.6 7.74a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.27 10.6H15.9v-4.54c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.62H9.7V9.01h2.85v1.27h.04c.4-.73 1.36-1.5 2.8-1.5 2.99 0 3.54 1.97 3.54 4.53v5.03Z"/></svg></a>
-    <button class="footer-book calendly-booking" type="button" aria-label="Book a free 15-minute call (opens scheduling window)">Book a free 15-minute call</button></div>
-  </div>
+   <div class="footer-actions" role="group" aria-label="CV and booking">
+    <a class="footer-action footer-action-outline" href="resume.html" target="_blank" rel="noopener noreferrer" aria-label="Download CV">
+     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.59l3.3-3.3 1.4 1.42-5 5a1 1 0 0 1-1.4 0l-5-5 1.4-1.42 3.3 3.3V4a1 1 0 0 1 1-1ZM5 19h14v2H5z"/></svg>
+     Download CV
+    </a>
+    <button class="footer-book footer-action footer-action-primary calendly-booking" type="button" aria-label="Book a free 15-minute call (opens scheduling window)">Book a free 15-minute call</button>
+   </div>
+   <nav class="footer-socials" aria-label="Social profiles">
+    <div class="footer-social-item"><a class="footer-social-link" href="https://wa.me/2348082062525?text=Hi%20Abdurrahman%2C%20I%20would%20like%20to%20discuss%20a%20website%20project" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .14 5.35.14 11.93c0 2.1.55 4.14 1.6 5.95L0 24l6.28-1.65a11.9 11.9 0 0 0 5.8 1.48h.01c6.57 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.5-8.42ZM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 1 1 8.37 4.62Zm5.42-7.39c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.8-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.2.3 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg></a><span>WhatsApp</span></div>
+    <div class="footer-social-item"><a class="footer-social-link" href="https://www.behance.net/itqancodes" target="_blank" rel="noopener noreferrer" aria-label="Behance" title="Behance"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16.969 16.927a2.561 2.561 0 0 0 1.901.677 2.501 2.501 0 0 0 1.531-.475c.362-.235.636-.584.779-.99h2.585a5.091 5.091 0 0 1-1.9 2.896 5.292 5.292 0 0 1-3.091.88 5.839 5.839 0 0 1-2.284-.433 4.871 4.871 0 0 1-1.723-1.211 5.657 5.657 0 0 1-1.08-1.874 7.057 7.057 0 0 1-.383-2.393c-.005-.8.129-1.595.396-2.349a5.313 5.313 0 0 1 5.088-3.604 4.87 4.87 0 0 1 2.376.563c.661.362 1.231.87 1.668 1.485a6.2 6.2 0 0 1 .943 2.133c.194.821.263 1.666.205 2.508h-7.699c-.063.79.184 1.574.688 2.187ZM6.947 4.084a8.065 8.065 0 0 1 1.928.198 4.29 4.29 0 0 1 1.49.638c.418.303.748.711.958 1.182.241.579.357 1.203.341 1.83a3.506 3.506 0 0 1-.506 1.961 3.726 3.726 0 0 1-1.503 1.287 3.588 3.588 0 0 1 2.027 1.437c.464.747.697 1.615.67 2.494a4.593 4.593 0 0 1-.423 2.032 3.945 3.945 0 0 1-1.163 1.413 5.114 5.114 0 0 1-1.683.807 7.135 7.135 0 0 1-1.928.259H0V4.084h6.947Zm-.235 12.9c.308.004.616-.029.916-.099a2.18 2.18 0 0 0 .766-.332c.228-.158.411-.371.534-.619.142-.317.208-.663.191-1.009a2.08 2.08 0 0 0-.642-1.715 2.618 2.618 0 0 0-1.696-.505h-3.54v4.279h3.471Zm13.635-5.967a2.13 2.13 0 0 0-1.654-.619 2.336 2.336 0 0 0-1.163.259 2.474 2.474 0 0 0-.738.62 2.359 2.359 0 0 0-.396.792c-.074.239-.12.485-.137.734h4.769a3.239 3.239 0 0 0-.679-1.785l-.002-.001Zm-13.813-.648a2.254 2.254 0 0 0 1.423-.433c.399-.355.607-.88.56-1.413a1.916 1.916 0 0 0-.178-.891 1.298 1.298 0 0 0-.495-.533 1.851 1.851 0 0 0-.711-.274 3.966 3.966 0 0 0-.835-.073H3.241v3.631h3.293v-.014ZM21.62 5.122h-5.976v1.527h5.976V5.122Z"/></svg></a><span>Behance</span></div>
+    <div class="footer-social-item"><a class="footer-social-link" href="https://www.instagram.com/itqan.by.abdurrahman" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm5 3.1a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4Zm0 2.2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm5.1-3.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg></a><span>Instagram</span></div>
+    <div class="footer-social-item"><a class="footer-social-link" href="https://linkedin.com/in/akinjobi-abdurrahman-8bb6163a5" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM8.09 18.34H5.12V9.01h2.97v9.33ZM6.6 7.74a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.27 10.6H15.9v-4.54c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.62H9.7V9.01h2.85v1.27h.04c.4-.73 1.36-1.5 2.8-1.5 2.99 0 3.54 1.97 3.54 4.53v5.03Z"/></svg></a><span>LinkedIn</span></div>
+    <div class="footer-social-item"><a class="footer-social-link" href="https://github.com/abdurrahmanismail277-code/adulxdivsey" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.65-1.24-1.65-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.99 1.93 3.3 1.47.1-.72.4-1.21.72-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.15-3-.12-.29-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.12-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.67.12 2.96.71.78 1.14 1.78 1.14 3 0 4.27-2.6 5.21-5.08 5.49.4.35.76 1.02.76 2.06v3.06c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg></a><span>GitHub</span></div>
+   </nav></div>
   <div class="footer-divider" aria-hidden="true"></div>
   <nav class="footer-nav" aria-label="Footer navigation">
    <a href="#home">Home</a><a href="#about">About</a><a href="#about">Skills</a><a href="#projects">Projects</a><a href="choose-web-developer-in-nigeria.html">Insights</a><a href="#contact">Contact</a><a href="privacy-policy.html">Privacy</a>
@@ -400,7 +548,19 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
  </div>
 </footer>
 
-<div class="fab"><a class="circ wa" href="https://wa.me/2348082062525?text=Hello%20Akinjobi%2C%20I%27d%20like%20to%20start%20a%20conversation%20about%20a%20project." target="_blank" rel="noopener" aria-label="Start conversation on WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .14 5.35.14 11.93c0 2.1.55 4.14 1.6 5.95L0 24l6.28-1.65a11.9 11.9 0 0 0 5.8 1.48h.01c6.57 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.5-8.42ZM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 1 1 8.37 4.62Zm5.42-7.39c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.8-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg></a><button class="circ" id="top" aria-label="Back to top">↑</button></div>
+<div class="fab"><button class="circ" id="top" aria-label="Back to top">↑</button></div>
+<div class="chat-widget" id="chat-widget">
+ <div class="chat-greeting" id="chat-greeting" role="status" aria-hidden="true"><p>Hi, I'm Abdurrahman. Have a project in mind? Let's talk.</p><button class="chat-greeting-close" id="chat-greeting-close" type="button" aria-label="Close greeting">×</button></div>
+ <section class="chat-panel" id="chat-panel" role="dialog" aria-label="Contact Abdurrahman" aria-modal="false" aria-hidden="true">
+  <header class="chat-header"><span class="chat-avatar" aria-hidden="true">A</span><div class="chat-identity"><strong>Abdurrahman</strong><span>Web Designer &amp; Developer</span></div><button class="chat-close" id="chat-close" type="button" aria-label="Close contact options">×</button></header>
+  <div class="chat-body"><p class="chat-subtitle">Choose how you'd like to connect.</p><nav class="chat-replies" aria-label="Contact options">
+   <a class="chat-quick primary" href="https://wa.me/2348082062525?text=Hi%20Abdurrahman%2C%20I%20would%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: Chat with me. Fastest way to get a quote."><span class="chat-link-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .14 5.35.14 11.93c0 2.1.55 4.14 1.6 5.95L0 24l6.28-1.65a11.9 11.9 0 0 0 5.8 1.48h.01c6.57 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.5-8.42ZM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.73.98 1-3.64-.24-.37a9.86 9.86 0 1 1 8.37 4.62Zm5.42-7.39c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.8-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.2.3 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg></span><span class="chat-link-copy"><strong>Chat with me</strong><small>Fastest way to get a quote</small></span><span class="chat-link-arrow" aria-hidden="true">↗</span></a>
+   <a class="chat-quick" href="https://www.behance.net/itqancodes" target="_blank" rel="noopener noreferrer" aria-label="Behance: View my projects. Case studies and design work."><span class="chat-link-icon"><svg class="behance-logo" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M16.969 16.927a2.561 2.561 0 0 0 1.901.677 2.501 2.501 0 0 0 1.531-.475c.362-.235.636-.584.779-.99h2.585a5.091 5.091 0 0 1-1.9 2.896 5.292 5.292 0 0 1-3.091.88 5.839 5.839 0 0 1-2.284-.433 4.871 4.871 0 0 1-1.723-1.211 5.657 5.657 0 0 1-1.08-1.874 7.057 7.057 0 0 1-.383-2.393c-.005-.8.129-1.595.396-2.349a5.313 5.313 0 0 1 5.088-3.604 4.87 4.87 0 0 1 2.376.563c.661.362 1.231.87 1.668 1.485a6.2 6.2 0 0 1 .943 2.133c.194.821.263 1.666.205 2.508h-7.699c-.063.79.184 1.574.688 2.187ZM6.947 4.084a8.065 8.065 0 0 1 1.928.198 4.29 4.29 0 0 1 1.49.638c.418.303.748.711.958 1.182.241.579.357 1.203.341 1.83a3.506 3.506 0 0 1-.506 1.961 3.726 3.726 0 0 1-1.503 1.287 3.588 3.588 0 0 1 2.027 1.437c.464.747.697 1.615.67 2.494a4.593 4.593 0 0 1-.423 2.032 3.945 3.945 0 0 1-1.163 1.413 5.114 5.114 0 0 1-1.683.807 7.135 7.135 0 0 1-1.928.259H0V4.084h6.947Zm-.235 12.9c.308.004.616-.029.916-.099a2.18 2.18 0 0 0 .766-.332c.228-.158.411-.371.534-.619.142-.317.208-.663.191-1.009a2.08 2.08 0 0 0-.642-1.715 2.618 2.618 0 0 0-1.696-.505h-3.54v4.279h3.471Zm13.635-5.967a2.13 2.13 0 0 0-1.654-.619 2.336 2.336 0 0 0-1.163.259 2.474 2.474 0 0 0-.738.62 2.359 2.359 0 0 0-.396.792c-.074.239-.12.485-.137.734h4.769a3.239 3.239 0 0 0-.679-1.785l-.002-.001Zm-13.813-.648a2.254 2.254 0 0 0 1.423-.433c.399-.355.607-.88.56-1.413a1.916 1.916 0 0 0-.178-.891 1.298 1.298 0 0 0-.495-.533 1.851 1.851 0 0 0-.711-.274 3.966 3.966 0 0 0-.835-.073H3.241v3.631h3.293v-.014ZM21.62 5.122h-5.976v1.527h5.976V5.122Z"/></svg></span><span class="chat-link-copy"><strong>View my projects</strong><small>Case studies and design work</small></span><span class="chat-link-arrow" aria-hidden="true">↗</span></a>
+   <a class="chat-quick" href="https://www.instagram.com/itqan.by.abdurrahman" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Follow my work. Updates and behind the scenes."><span class="chat-link-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm5 3.1a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4Zm0 2.2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm5.1-3.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg></span><span class="chat-link-copy"><strong>Follow my work</strong><small>Updates and behind the scenes</small></span><span class="chat-link-arrow" aria-hidden="true">↗</span></a>
+  </nav></div>
+ </section>
+ <button class="chat-toggle" id="chat-toggle" type="button" aria-label="Open contact options" aria-expanded="false" aria-controls="chat-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5h15A2.5 2.5 0 0 1 22 8v8a2.5 2.5 0 0 1-2.5 2.5h-8.2l-4.8 3v-3H4.5A2.5 2.5 0 0 1 2 16V8a2.5 2.5 0 0 1 2.5-2.5Z"/><path d="M7 10h10M7 14h7"/></svg><span class="chat-badge" id="chat-badge" aria-label="1 new message">1</span></button>
+</div>
 
 <script>
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -431,6 +591,10 @@ $('#jr').innerHTML=chapters.map(([date,title,copy],i)=>`<article class="cp rv"><
 // Motion and scroll progress
 const progress=()=>{const max=document.documentElement.scrollHeight-innerHeight;$('#prog').style.width=(max>0?scrollY/max*100:0)+'%';$('#top').classList.toggle('show',scrollY>500)};
 addEventListener('scroll',progress,{passive:true});progress();
+// Dismissible announcement ticker
+const announcementClose=$('#announcement-close');
+try{if(sessionStorage.getItem('itqan-announcement-closed')==='1')document.documentElement.dataset.announcementClosed='true'}catch{}
+announcementClose.addEventListener('click',()=>{document.documentElement.dataset.announcementClosed='true';announcementClose.blur();try{sessionStorage.setItem('itqan-announcement-closed','1')}catch{}});
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.classList.add('on');reveal.unobserve(e.target)}}),{threshold:.12});$$('.rv').forEach(el=>reveal.observe(el));}else $$('.rv').forEach(el=>{el.classList.add('in','on')});
 // Theme
 const theme=$('#theme');let savedTheme='dark';try{savedTheme=localStorage.getItem('itqan-theme')||'dark'}catch{}if(savedTheme==='light'){document.documentElement.dataset.theme='light';theme.textContent='☼'}
@@ -521,6 +685,18 @@ contactForm.addEventListener('submit',async event=>{
   submitButton.disabled=false;submitButton.textContent=originalSubmitText;
  }
 });$('#top').addEventListener('click',()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
+// Floating contact widget and once-per-session greeting.
+const chatWidget=$('#chat-widget'),chatToggle=$('#chat-toggle'),chatPanel=$('#chat-panel'),chatClose=$('#chat-close'),chatBadge=$('#chat-badge'),chatGreeting=$('#chat-greeting'),chatGreetingClose=$('#chat-greeting-close');
+let chatIsOpen=false,chatGreetingShown=false,chatWasOpened=false;
+try{chatGreetingShown=sessionStorage.getItem('itqan-contact-greeting-shown')==='1';chatWasOpened=sessionStorage.getItem('itqan-contact-options-opened')==='1'}catch{}
+if(chatWasOpened)chatBadge.hidden=true;
+function showChatGreeting(){if(chatGreetingShown||chatWasOpened||chatIsOpen)return;chatGreetingShown=true;chatGreeting.setAttribute('aria-hidden','false');chatGreeting.classList.add('is-visible');try{sessionStorage.setItem('itqan-contact-greeting-shown','1')}catch{}}
+function hideChatGreeting(){chatGreeting.classList.remove('is-visible');chatGreeting.setAttribute('aria-hidden','true');chatGreetingShown=true;try{sessionStorage.setItem('itqan-contact-greeting-shown','1')}catch{}}
+function setChatOpen(open){chatIsOpen=open;chatPanel.classList.toggle('is-open',open);chatPanel.setAttribute('aria-hidden',String(!open));chatToggle.setAttribute('aria-expanded',String(open));chatToggle.setAttribute('aria-label',open?'Close contact options':'Open contact options');chatWidget.classList.toggle('chat-open',open);if(open){chatWasOpened=true;chatBadge.hidden=true;hideChatGreeting();try{sessionStorage.setItem('itqan-contact-options-opened','1')}catch{}setTimeout(()=>chatClose.focus(),0)}else chatToggle.focus()}
+chatToggle.addEventListener('click',()=>setChatOpen(!chatIsOpen));chatClose.addEventListener('click',()=>setChatOpen(false));
+chatGreetingClose.addEventListener('click',()=>{hideChatGreeting();chatToggle.focus()});
+addEventListener('keydown',event=>{if(event.key==='Escape'&&chatIsOpen)setChatOpen(false)});
+setTimeout(showChatGreeting,4000);
 const testimonialTrack=$('#tc-track');
 function scrollTestimonial(direction){const card=testimonialTrack.querySelector('.tc');if(!card)return;const gap=parseFloat(getComputedStyle(testimonialTrack).gap)||0;testimonialTrack.scrollBy({left:direction*(card.getBoundingClientRect().width+gap),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
 $('#tc-prev').addEventListener('click',()=>scrollTestimonial(-1));$('#tc-next').addEventListener('click',()=>scrollTestimonial(1));
@@ -552,6 +728,52 @@ $('#yr').textContent=new Date().getFullYear();
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" defer></script>
 <script src="https://web3forms.com/client/script.js" async defer></script>
+<script>
+(()=>{
+ const form=document.getElementById('newsletter-form');
+ if(!form)return;
+ const emailInput=document.getElementById('newsletter-email');
+ const websiteInput=document.getElementById('newsletter-website');
+ const submitButton=form.querySelector('button[type="submit"]');
+ const message=document.getElementById('newsletter-msg');
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const email=emailInput.value.trim();
+  emailInput.value=email;
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+   message.textContent='Please enter a valid email address.';
+   message.className='is-error';
+   emailInput.focus();
+   return;
+  }
+  message.textContent='Sending...';
+  message.className='is-pending';
+  submitButton.disabled=true;
+  try{
+   const response=await fetch('/api/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email,website:websiteInput.value})
+   });
+   let result={};
+   try{result=await response.json()}catch{}
+   if(response.ok){
+    message.textContent='Thanks, check your inbox to confirm.';
+    message.className='';
+    form.reset();
+   }else{
+    message.textContent=typeof result.error==='string'&&result.error.trim()?result.error:'Something went wrong. Please try again.';
+    message.className='is-error';
+   }
+  }catch{
+   message.textContent='Something went wrong. Please try again.';
+   message.className='is-error';
+  }finally{
+   submitButton.disabled=false;
+  }
+ });
+})();
+</script>
 </body>
 </html>
 
