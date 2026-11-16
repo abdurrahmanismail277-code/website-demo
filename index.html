@@ -174,10 +174,11 @@ header{position:fixed;top:calc(var(--announce-h) + 12px);left:12px;right:12px;z-
 .feature-summary p{max-width:44ch;color:var(--mute);font-size:.95rem;line-height:1.7}
 .feature-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
 .feature-tags span{padding:7px 10px;border:1px solid var(--line);border-radius:99px;color:var(--fg);font:400 .62rem var(--mo);letter-spacing:.04em}
-.feature-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px}
-.feature-gallery figure{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
-.feature-gallery img{display:block;width:100%;height:auto}
-.feature-gallery figcaption{padding:9px 11px;color:var(--mute);font:400 .62rem var(--mo);letter-spacing:.05em}
+.feature-more{color:var(--mute);font-size:.82rem;text-decoration:underline;text-underline-offset:4px}.feature-more:hover{color:var(--acc)}
+.feature-gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;padding:18px}
+.feature-gallery figure{min-width:0;aspect-ratio:3/4;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.feature-gallery img{display:block;width:100%;height:calc(100% - 34px);object-fit:contain;background:var(--card)}
+.feature-gallery figcaption{min-height:34px;display:flex;align-items:center;padding:7px 9px;color:var(--mute);font:400 .6rem var(--mo);letter-spacing:.035em}
 @media(max-width:760px){.feature-intro{grid-template-columns:1fr}.feature-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}}
 @media(prefers-reduced-motion:reduce){.feature-case,.feature-case:hover{transition:none;transform:none}}
 .behance-logo{width:22px;height:22px;flex:none;display:block;vertical-align:middle}
@@ -341,6 +342,40 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
 .chat-widget.chat-open .chat-greeting{opacity:0;transform:translateX(10px);visibility:hidden;pointer-events:none;transition:none}
 #top{opacity:0;pointer-events:none;transition:.3s}#top.show{opacity:1;pointer-events:auto}
 .rv{opacity:0;transform:translateY(20px);transition:.8s}.rv.in{opacity:1;transform:none}
+/* Selected work / continuous landing-page flyover */
+.workfilm{margin:30px 0 42px;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#f9fbfb;color:#171819;box-shadow:0 24px 70px #0003}
+.workfilm-head,.workfilm-meta{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 22px;font:400 .64rem var(--mo);letter-spacing:.13em;text-transform:uppercase;color:#5d6065}
+.workfilm-head{border-bottom:1px solid #dfe2e7}.workfilm-live{display:flex;align-items:center;gap:8px}.workfilm-live i{width:7px;height:7px;border-radius:50%;background:#ff4a0a;box-shadow:0 0 12px #ff4a0a;animation:wf-pulse 1.3s infinite}
+.workfilm-stage{height:clamp(360px,55vw,600px);position:relative;isolation:isolate;overflow:hidden;perspective:1500px;background:radial-gradient(ellipse at 50% 42%,#f9fbfb 0,#f6f7f9 60%,#e9ebef 100%);contain:paint}
+.workfilm-world{position:absolute;inset:0;display:grid;place-items:start center;perspective:1500px;perspective-origin:50% 55%}
+.workfilm-page{position:absolute;top:8%;width:min(72%,760px);height:1480px;padding:22px 26px;border-radius:24px;background:#fff;box-shadow:0 35px 90px #20263330;transform-origin:50% 6%;overflow:hidden;animation:wf-camera 14.5s cubic-bezier(.25,.75,.35,1) infinite;will-change:transform,filter}
+@keyframes wf-camera{0%{transform:rotateX(56deg) translate3d(0,0,0) scale(.76);filter:blur(0)}56.55%{transform:rotateX(56deg) translate3d(0,-780px,0) scale(.76);filter:blur(0)}63.8%{transform:rotateX(0) translate3d(0,-900px,0) scale(.38);filter:blur(0)}65.3%{transform:rotateX(0) translate3d(0,-900px,0) scale(.39);filter:blur(0)}68.75%{transform:rotateX(0) translate3d(0,-58px,0) scale(.91);filter:blur(0)}69%,100%{transform:rotateX(0) translate3d(0,-58px,0) scale(.91);filter:blur(0)}}
+.workfilm-page:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 0 18%,#f9fbfb00 38%,#f9fbfb 69%);opacity:0;animation:wf-mask 14.5s linear infinite}
+@keyframes wf-mask{0%,64%{opacity:0}68.7%,100%{opacity:1}}
+.wf-nav{height:34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ececec;font:700 9px var(--sy);color:#181818}.wf-nav b{color:#ff4a0a}.wf-nav span:last-child{font:7px var(--mo);color:#777}
+.wf-hero{height:280px;padding:42px 24px 20px;position:relative;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(115deg,#fff 50%,#fff6f2)}
+.wf-kicker,.wf-chip{font:7px var(--mo);letter-spacing:.08em;color:#e64a16;text-transform:uppercase}.wf-hero h3{max-width:340px;margin:13px 0 8px;font:800 clamp(28px,5vw,48px)/.92 var(--sy);letter-spacing:-.06em;color:#171717}.wf-hero p{max-width:300px;font:9px/1.5 Inter,sans-serif;color:#747474}.wf-button{margin-top:12px;display:inline-flex;width:max-content;padding:8px 12px;border-radius:20px;background:#ff4a0a;color:white;font:7px Inter,sans-serif;box-shadow:0 8px 18px #ff4a0a35;transform-style:preserve-3d;animation:wf-lift 14.5s ease-out infinite}
+@keyframes wf-lift{0%,1%{transform:translateZ(0) rotateX(0)}9.3%,100%{transform:translateZ(68px) rotateX(-30deg)}}
+.wf-mark{position:absolute;right:35px;top:54px;width:150px;height:150px;border-radius:50%;background:linear-gradient(145deg,#ffbb39,#ff4a0a 60%,#8f1c24);box-shadow:0 22px 35px #ce531f30;animation:wf-mark 14.5s ease-out infinite}
+@keyframes wf-mark{0%,1%{transform:translateZ(0) rotate(0)}9.3%,100%{transform:translateZ(74px) rotate(12deg)}}
+.wf-tiles{position:absolute;left:20px;top:170px;display:flex;gap:5px;z-index:3}.wf-tiles i{width:20px;height:20px;display:grid;place-items:center;border-radius:5px;background:#171717;color:#ff4a0a;font:700 8px var(--sy);box-shadow:0 5px 14px #0003;animation:wf-tile 14.5s cubic-bezier(.2,.8,.2,1) infinite}.wf-tiles i:nth-child(2){animation-delay:.04s}.wf-tiles i:nth-child(3){animation-delay:.08s}.wf-tiles i:nth-child(4){animation-delay:.12s}
+@keyframes wf-tile{0%,1%{transform:translate3d(0,0,0) scale(1)}8%,16%{transform:translate3d(-8px,-64px,100px) scale(2.2)}30%,100%{transform:translate3d(-18px,-110px,20px) scale(1.5)}}
+.wf-section{height:230px;margin-top:12px;padding:17px;border-radius:12px;background:#f6f5f1;position:relative}.wf-section h4{font:800 19px/.95 var(--sy);letter-spacing:-.04em;margin:9px 0;color:#171717}.wf-cards{display:flex;gap:9px;margin-top:12px}.wf-card{height:90px;flex:1;border-radius:8px;background:linear-gradient(145deg,#c3deea,#678a9b 55%,#182d37);box-shadow:0 8px 18px #19252c28;animation:wf-cards 14.5s ease-out infinite}.wf-card:nth-child(2){background:linear-gradient(145deg,#ffe09c,#ff9c51 55%,#7c3b36);animation-delay:.08s}.wf-card:nth-child(3){background:linear-gradient(145deg,#e3c5dc,#8b607f 55%,#35283c);animation-delay:.15s}
+@keyframes wf-cards{0%,10%{transform:translateZ(0) rotateX(0)}18%,27%{transform:translateZ(40px) rotateX(-44deg)}32%,100%{transform:translateZ(0) rotateX(0)}}
+.wf-section.wf-testimonial{height:170px;background:#171717;color:#fff;margin-top:10px}.wf-testimonial blockquote{max-width:390px;margin-top:16px;font:italic 16px/1.2 Newsreader,serif;color:#f4f1ea}.wf-testimonial cite{display:block;margin-top:12px;font:7px var(--mo);letter-spacing:.1em;color:#ff794c;font-style:normal;transform-origin:50% 100%;animation:wf-quote 14.5s ease-out infinite}
+@keyframes wf-quote{0%,36%{transform:translateZ(0) rotateX(0)}43.5%,53%{transform:translateZ(112px) rotateX(-30deg)}58%,100%{transform:translateZ(0) rotateX(0)}}
+.wf-section.wf-about{height:200px;background:#fff}.wf-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}.wf-chips span{padding:6px 9px;border:1px solid #dedede;border-radius:20px;font:7px var(--mo);color:#4a4a4a;box-shadow:0 4px 12px #0001;animation:wf-chips 14.5s ease-out infinite}.wf-chips span:nth-child(2){animation-delay:.1s}.wf-chips span:nth-child(3){animation-delay:.2s}
+@keyframes wf-chips{0%,36%{transform:translateZ(0) rotateX(0)}44%,54%{transform:translateZ(50px) rotateX(-48deg)}60%,100%{transform:translateZ(0) rotateX(0)}}
+.workfilm-end{position:absolute;inset:0;z-index:4;display:grid;place-items:center;opacity:0;background:linear-gradient(180deg,#f9fbfb00 0%,#f9fbfb 24%,#f9fbfb 100%);animation:wf-end 14.5s linear infinite;pointer-events:none}
+@keyframes wf-end{0%,68.7%{opacity:0}69.2%,100%{opacity:1}}
+.wf-end-card{width:min(80%,900px);min-height:62%;position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,6vw,70px);border-radius:24px;background:#fff;box-shadow:0 24px 80px #20263324;animation:wf-card 14.5s ease-out infinite}
+@keyframes wf-card{0%,68%{transform:scale(.94)}73%,100%{transform:scale(1)}}
+.wf-badge{align-self:flex-start;margin-bottom:20px;padding:8px 13px;border:1px solid #e4e5e8;border-radius:30px;background:#fff;font:600 12px Inter,sans-serif;color:#202124}.wf-badge b{color:#ff4a0a;font-family:var(--sy)}
+.wf-end-card h3{font:500 clamp(36px,7.2vw,74px)/.98 Inter,sans-serif;letter-spacing:-.055em;color:#18191c}.wf-end-card h3 em{display:block;margin-top:8px;font:italic 500 clamp(38px,7.6vw,82px)/.95 Newsreader,serif;color:#8b8b92}
+.wf-end-tiles{position:absolute;top:-18px;right:-10px;display:flex;gap:7px;transform:rotate(8deg)}.wf-end-tiles i{width:38px;height:38px;border-radius:9px;background:#171717;color:#ff4a0a;display:grid;place-items:center;font:800 13px var(--sy);box-shadow:0 9px 22px #0003}.workfilm-meta{border-top:1px solid #dfe2e7;background:#f9fbfb}.workfilm-meta a{color:#e64a16;text-decoration:underline;text-underline-offset:3px}
+@keyframes wf-pulse{50%{opacity:.3;transform:scale(.7)}}
+@media(max-width:620px){.workfilm{margin:24px 0 32px;border-radius:15px}.workfilm-head,.workfilm-meta{padding:13px 14px;font-size:.51rem;letter-spacing:.08em}.workfilm-stage{height:430px}.workfilm-page{top:10%;width:86%;height:1200px;padding:17px 16px}.wf-hero{height:250px;padding:34px 12px 16px}.wf-hero h3{max-width:220px;font-size:35px}.wf-hero p{max-width:190px;font-size:8px}.wf-mark{width:88px;height:88px;right:15px;top:43px}.wf-tiles{left:12px;top:163px}.wf-section{height:205px;padding:13px}.wf-section h4{font-size:16px}.wf-card{height:72px}.wf-section.wf-about{height:170px}.wf-section.wf-testimonial{height:150px}.wf-testimonial blockquote{font-size:14px}.wf-end-card{width:88%;min-height:55%;padding:25px 20px;border-radius:20px}.wf-badge{font-size:10px}.wf-end-tiles i{width:30px;height:30px}}
+@media(prefers-reduced-motion:reduce){.workfilm-live i,.workfilm-page,.workfilm-page:after,.wf-button,.wf-mark,.wf-tiles i,.wf-card,.wf-testimonial cite,.wf-chips span,.workfilm-end,.wf-end-card{animation:none!important}.workfilm-page{transform:rotateX(0) translateY(-58px) scale(.91)}.workfilm-page:after{opacity:0}.workfilm-end{opacity:1;background:none}.wf-end-card{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tc-track{scroll-behavior:auto}.trk,.badge i{animation:none}.wd>span{transform:none;animation:none}.hero-emphasis{animation:none;background-size:100% .075em}.logo,.logo-dot,.footer-icons a,.footer-icons a::after,.footer-nav a::after,.calendly-booking,.hero-resume,#ov .ov-book-link,.footer-book{transition:none;animation:none;transform:none}#ov,#ov.open{transition:none}#ov .ov-link,#ov.open .ov-link{animation:none;opacity:1;transition:none}#ov .ov-info,#ov.open .ov-info{animation:none;opacity:1;transform:none}#ov .x{transition:none;transform:none}.rv{transform:none}}
 </style>
 </head>
@@ -419,14 +454,30 @@ footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);colu
  <div class="mq" id="mq"></div>
 </div></section>
 
+
+
 <section id="projects"><div class="ghost" aria-hidden="true">Projects</div><div class="wrap">
  <h2>Selected <em>work</em></h2>
+ <article class="workfilm" aria-label="Featured motion project: Itqan landing page flyover">
+  <div class="workfilm-head"><span>FEATURED MOTION / ITQAN CODES</span><span class="workfilm-live"><i aria-hidden="true"></i> 14.5 SEC FILM</span></div>
+  <div class="workfilm-stage" role="img" aria-label="Continuous cinematic flyover of the Itqan portfolio, rising from the hero across selected projects and client testimonial before resolving into a title card.">
+   <div class="workfilm-world" aria-hidden="true"><div class="workfilm-page">
+    <div class="wf-nav"><span>itqan<b>.</b>codes</span><span>WORK　 ABOUT　 CONTACT</span></div>
+    <div class="wf-hero"><span class="wf-kicker">WEB DESIGN / DEVELOPMENT</span><h3>Make your next<br>move online.</h3><p>Thoughtful design. Fast, useful websites built for people and brands.</p><span class="wf-button">Explore my work　↗</span><span class="wf-mark"></span><span class="wf-tiles"><i>i</i><i>t</i><i>q</i><i>.</i></span></div>
+    <div class="wf-section"><span class="wf-kicker">01 / SELECTED WORK</span><h4>Digital, made to<br>move people.</h4><div class="wf-cards"><i class="wf-card"></i><i class="wf-card"></i><i class="wf-card"></i></div></div>
+    <div class="wf-section wf-testimonial"><span class="wf-kicker">A NOTE FROM A CLIENT</span><blockquote>“He understood what I wanted and did a good job with it.”</blockquote><cite>BISMAK / CLIENT</cite></div>
+    <div class="wf-section wf-about"><span class="wf-kicker">02 / DESIGN TO LAUNCH</span><h4>Clear thinking.<br>Considered details.</h4><div class="wf-chips"><span>DESIGN</span><span>DEVELOPMENT</span><span>RESPONSIVE</span></div></div>
+   </div></div>
+   <div class="workfilm-end" aria-hidden="true"><div class="wf-end-card"><span class="wf-badge"><b>itqan.</b>codes　 /　 AKINJOBI ABDURRAHMAN</span><h3>Make it matter.<em>With intention.</em></h3><span class="wf-end-tiles"><i>i</i><i>t</i></span></div></div>
+  </div>
+  <div class="workfilm-meta"><span>LANDING PAGE / ART DIRECTION / MOTION</span><a href="#home" aria-label="Visit the Itqan landing page">EXPLORE THE SITE ↗</a></div>
+ </article>
  <div class="fl"><button class="on" data-f="all">ALL</button><button data-f="Business">BUSINESS</button><button data-f="Education">EDUCATION</button><button data-f="Design">DESIGN</button></div>
  <div class="grid">
   <article class="card feature-case" data-c="Design">
    <div class="feature-intro">
     <div class="feature-cover"><img src="assets/01_hero_cover.jpg" alt="Floating Mockup Series hero artwork with a colorful smartphone among dark spheres" loading="lazy"><span class="cat">Product visual</span></div>
-    <div class="feature-summary"><span class="mono"><span>03 / Product visual</span><span>2026</span></span><h3>Floating Mockup Series</h3><p>A product visual study pairing a bold smartphone mockup and bright color blocking with soft, dimensional forms.</p><div class="feature-tags"><span>Product visualization</span><span>Art direction</span><span>Mockup series</span></div><a class="btn" href="https://www.behance.net/gallery/257304907/Website-Design-Development" target="_blank" rel="noopener noreferrer" aria-label="View Floating Mockup Series on Behance">View project on Behance <span aria-hidden="true">↗</span></a></div>
+    <div class="feature-summary"><span class="mono"><span>03 / Product visual</span><span>2026</span></span><h3>Floating Mockup Series</h3><p>A product visual study pairing a bold smartphone mockup and bright color blocking with soft, dimensional forms.</p><div class="feature-tags"><span>Product visualization</span><span>Art direction</span><span>Mockup series</span></div><a class="btn" href="floating-mockup.html" aria-label="Watch the 20-second Floating Mockup Series motion film">Watch the 20-second motion film <span aria-hidden="true">&#8594;</span></a> <a class="feature-more" href="https://www.behance.net/gallery/257304907/Website-Design-Development" target="_blank" rel="noopener noreferrer">View case study on Behance &#8599;</a></div>
    </div>
    <div class="feature-gallery" role="group" aria-label="Floating Mockup Series project images">
     <figure><img src="assets/02_split_layout.jpg" alt="Split layout showing the phone mockup, concept copy, and color swatches" loading="lazy"><figcaption>Concept layout</figcaption></figure>
